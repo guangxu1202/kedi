@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print content('info')/}">
+<meta name="keywords" content="{print content('keywords')/}">
+<title>{print content('title')/}_{print cateinfo('cate_title_seo')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript">
+function change_size(size){
+	$('.t_text').css('font-size',size+'px');
+}
+</script>
+</head>
+<body>
+{include head/}
+  <div class="mainbody">
+      <div class="box1"  >
+	    <div class="containt">
+		<div class="right" style="float:left">
+		   <div class="box">
+		     <div class="voc" style="height:auto">
+			   <div  id="content_tit">{position source=position/} >> {print content('title')/}</div>
+			   <div id="content_text">
+			    <h1 class="mainh1">{print content('title')/}</h1>
+				<h1 class="mainh2">字体：<a href="#" onclick="change_size(16);return false;">【大】</a> <a href="#" onclick="change_size(14);return false;">【中】</a> <a href="#" onclick="change_size(12);return false;">【小】</a> <a href="javascript:window.print()">【打印】</a> <a href="javascript:self.close()">【关闭】</a> 点击：<script language="javascript" src="{path includes/}/hits.php?id={print content('id')/}"></script></h1>
+				<div  class="t_text">
+				<div class="c_form">
+				 {assign source=get_form2() name=f/}
+				 <script type="text/javascript">
+				 function check_form(){
+				 	{loop source=$f['field']}
+					{if $v['note']}
+				 	if(document.getElementById('{print $v[field_name]/}').value==''){
+						alert('{print $v[info]/}不能为空');
+						return false;
+					}
+					{/if}	
+					{/loop}	
+				 }
+				 </script>
+				<form name="form1" onsubmit="return check_form();" action="{path cms/}mx_form/order_save.php" method="post">
+				{loop source=$f['field']}
+				<p>{print $v['num']/}、{print $v['info']/}</p>
+				<p>{print $v['field']/}</p>
+				{/loop}
+				<p><input type="submit" value="提交" class="pt_go" name="submit"><input type="hidden" name="form_id" value="{print $f['form_id']/}"/></p>
+				</form>
+				</div>
+				
+				
+				</div>
+				
+				</div>
+			   <div class="digg">
+<div class="page_fy" style="float:none;margin-left:300px;">
+    {print body_pages()/}
+  </div>
+</div>
+           
+			 </div>
+		   </div>
+		  
+		</div>
+		  <div class="left" style="float:right">
+		   <div class="box">
+		     <div class="announ">
+			 {assign source=get_tpl_cate_content($tpl_id='6',$limit='0,9',$order_type='',$filter='',$pic='no',$order='addtime',$lang='') name=tzgg/}
+			   <div class="title">课件下载<a href="{print $tzgg['cate']['cate_url']/}"></a></div>
+			   <ul class="ul1">
+			   {loop source=$tzgg['contents']}
+			     <li><a {if $v['style']}style="{print $v['style']/}"{/if} href="{print $v['url']/}" title="{print $v['title']/}" target="_blank">{print cn_substr($v['title'],'55')/}</a></li>
+				{/loop}
+			   </ul>
+			 </div>
+		   </div>
+
+		   <div class="box">
+		     <div class="ts" style="height:auto">
+			 {assign source=get_tpl_cate_content($tpl_id='3',$limit='0,11',$order_type='',$filter='',$pic='no',$order='addtime',$lang='') name=wxts/}
+			   <div class="title">温馨提示<a href="{print $wxts['cate']['cate_url']/}"></a></div>
+			   <ul class="ul1">
+			   {loop source=$wxts['contents']}
+			     <li><a href="{print $v['url']/}" title="{print $v['title']/}" target="_blank" {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],'55')/}</a></li>
+				 {/loop}
+			   </ul>
+			   <a  class="zx"></a>
+			 </div>
+		   </div>
+
+		   <div class="box">
+		     <div class="nsfd">
+			   <div class="title">纳税辅导<a href=""></a></div>
+			   {include link_a/}
+			   
+			 </div>
+		   </div>
+
+		  </div>
+
+	  </div>
+	  <div class="box_bottom"></div>
+   </div>
+   </div>
+{include foot/}
+</body>
+</html>

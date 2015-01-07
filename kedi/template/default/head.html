@@ -1,0 +1,129 @@
+<div class="i_login">
+	<span class="i_close" onclick="closeLog()"></span>
+    <form name="form2" id="fomr2" action="{path alone/}/alone.php?id=31" method="post">
+    	<input type="text" id="uname" name="uname" class="log_t log_name" />
+        <input type="password" id="password" name="password" class="log_t log_pw" />
+        <input type="button" value="" class="log_submit" onclick="checkUser()" />
+    </form>
+</div>
+<div class="wrapbg"></div>
+
+<script>
+
+function mylogin(){
+	$(".wrapbg").show();
+	$(".i_login").show();
+	$(".wrapbg").css("height",$(document).height());
+	$(".i_login").css("top",$(document).scrollTop()+$(window).height()/2);
+}
+function closeLog(){
+	$(".wrapbg").hide();
+	$(".i_login").hide();
+}
+</script>
+
+<div class="header wrap">
+	<div class="search fr">
+    <form name="form1" action="{path search/}">
+		<input type="submit" class="s_submit fr" value="">
+		<input type="text" class="s_text fl"  name="key">
+    </form>
+	</div>
+	<a href="{path index/}" class="logo"><img src="{path template/}/images/logo.gif"></a>
+</div>
+<div class="nav">
+	<ul>
+		<li class="n1 {print get_web_param('index_focus')/}"><a href="{path index/}" class="i_a">首页</a></li>
+        {loop source=nav_middle() item=$nav_child} 
+		<li class="{print $nav_child['class']/}"><a href="{print $nav_child['url']/}" class="i_a" {print $nav_child['target']/}><span>{print $nav_child['cate_name']/}</span></a>
+        	{if $nav_child['id']==4}
+        		<div class="sub">
+                    <div class="inner">
+                        <dl class="pro03 clearfix">
+                            <dd>
+                            {loop source=$nav_child['child']}
+                             <p><a href="{print $v['url']/}"> {print $v['cate_name']/}</a></p>
+                            {/loop}
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="filter alpha60"></div>
+                </div>
+            {/if}
+            {if $nav_child['id']==5}
+        		<div class="sub">
+                    <div class="inner">
+                    	{loop source=$nav_child['child']}
+                         <dl class="pro0{print $v['childnum']/} clearfix">
+                            <dt>{print $v['cate_name']/}</dt>
+                            <dd>
+                            {loop source=$v['child']}
+                            <p><a href="{print $v['url']/}">{print $v['cate_name']/}</a></p>
+                             {/loop}
+                            </dd>
+                        </dl>
+                        {/loop}
+                    </div>
+                    <div class="filter alpha60"></div>
+                </div>
+            {/if}
+            {if $nav_child['id']==57}
+        		<div class="sub">
+                    <div class="inner">
+                        <dl class="pro03 clearfix">
+                            <dd>
+                            {loop source=$nav_child['child']}
+                             <p><a href="{print $v['url']/}"> {print $v['cate_name']/}</a></p>
+                            {/loop}
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="filter alpha60"></div>
+                </div>
+            {/if}
+            {if $nav_child['id']==24}
+        		<div class="sub">
+                    <div class="inner">
+                        <dl class="pro03 clearfix">
+                            <dd>
+                            {loop source=$nav_child['child']}
+                             <p><a href="{print $v['url']/}"> {print $v['cate_name']/}</a></p>
+                            {/loop}
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="filter alpha60"></div>
+                </div>
+            {/if}
+            {if $nav_child['id']==8}
+        		<div class="sub">
+                    <div class="inner">
+                        <dl class="pro03 clearfix">
+                            <dd>
+                            {loop source=$nav_child['child']}
+                             <p><a href="{print $v['url']/}"> {print $v['cate_name']/}</a></p>
+                            {/loop}
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="filter alpha60"></div>
+                </div>
+            {/if}
+            {if $nav_child['id']==23}
+        		<div class="sub">
+                    <div class="inner">
+                        <dl class="pro03 clearfix">
+                            <dd>
+                            {loop source=$nav_child['child']}
+                             <p><a href="{print $v['url']/}"> {print $v['cate_name']/}</a></p>
+                            {/loop}
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="filter alpha60"></div>
+                </div>
+            {/if}
+		</li>
+		{/loop}
+	</ul>
+</div>

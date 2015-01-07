@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title> search_{print webinfo('web_name')/} </title>
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<link href="{path template/}/style/common.css" rel="stylesheet" type="text/css" />
+<script src="{path template/}/js/jquery.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+{include head/}
+
+<div class="wrap min500">
+	<div class="guide m15" style="margin-top:15px;">
+        搜索 <span style="color:red; font-weight:bold">{print get_web_param('key')/}</span> 的结果如下<a href="{path index/}" class="fr">返回首页</a>
+    </div>
+
+{if !get_search()}
+	<div class="search_content">
+		<h2>没有相关内容</h2>
+	</div>
+{else}	
+	<div class="newsbox">
+        <div class="news_list">
+            <ul class="i_news">
+                {loop source=get_search()}
+                <li><a href="{print $v['url']/}" target="_blank">{print $v['title']/}</a></li>
+                
+                {/loop}
+            </ul>
+            <div class="list_page">
+                <div class="page_fy">
+                {print get_search_page()/}
+                </div>
+            </div>
+        </div>
+    </div>
+	
+{/if}	
+	
+</div>
+{include foot/}
+</body>
+</html>

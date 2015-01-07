@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print content('info')/}">
+<meta name="keywords" content="{print content('keywords')/}">
+<title>{print content('title')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/style/common.css" rel="stylesheet" type="text/css" />
+<script src="{path template/}/js/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+{include head/}
+
+
+
+<div class="banner">
+	<ul class="sub_banner">
+		<li class="b1">
+        	{if get_pid()==8}
+			<img src="{path template/}/images/b_about.jpg">
+            {/if}
+            {if get_pid()==23}
+			<img src="{path template/}/images/b_contract.jpg">
+            {/if}
+            {if out_id()==31}
+			<img src="{path template/}/images/b_tech.jpg">
+            {/if}
+		</li>
+	</ul>
+</div>
+<div class="wrap">
+{if out_id()==31}
+	<div class="innerWrap one clearfix">
+		
+		<div class="i_main">
+			<div class="guide">
+            	<a href="{path index/}" class="fr">退出登录</a>
+            	{position source=position/}
+            </div>
+			<div class="g_title">货单管理</div>
+			<div class="g_wrap">
+				<div class="gw_body min5">
+					{print content('content')/}
+				</div>
+			</div>
+		</div>
+	</div>
+{else}
+	<div class="innerWrap two clearfix">
+		<div class="i_left">
+        	{assign source=get_tpl_list_nav() name=tree/}
+			{if $tree}
+            <!--关于科迪-->
+            {if get_pid()==8}
+			<div class="ihead"><img src="{path template/}/images/about_kedi.jpg"></div>
+            {/if}
+            <!--联系我们-->
+            {if get_pid()==23}
+			<div class="ihead"><img src="{path template/}/images/contactus.jpg"></div>
+            {/if}
+			<div class="ibody">
+				<ul class="i_newlist">
+					{loop source=$tree item=$nav}
+                     <li class="{print $nav['class']/}"><p><a href="{print $nav['url']/}" title="{print $nav['cate_name']/}">{print $nav['cate_name']/} </a> </p></li>
+                     {/loop}
+				</ul>
+			</div>
+            {/if}
+		</div>
+		<div class="i_main">
+			<div class="guide">{position source=position/}</div>
+			<div class="g_title">{print get_cate(out_id())/}</div>
+			<div class="g_wrap">
+				<div class="gw_body">
+					{print content('content')/}
+				</div>
+			</div>
+		</div>
+	</div>
+{/if}
+</div>
+
+
+{include foot/}
+</body>
+</html>

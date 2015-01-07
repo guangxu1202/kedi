@@ -1,0 +1,92 @@
+<div class="head_contain">
+<div class="login_contain">
+<div class="head_login" id="user_login">
+<form name="form1" action="{path cms/}member.php" method="post">
+<label>用户名:</label><input type="text" id="ajax_user" name="user" style="width:100px" />
+<label>登陆密码:</label><input type="password" id="ajax_password" name="password" style="width:100px" />
+<label>验证码:</label><input type="text" name="code" id="ajax_code" style="width:50px" /><img src="{path includes/}/code.php" name="code" border="0" id="code" style="display:block; float:left;cursor:pointer; margin-left:5px; display:inline"/>
+<input type="hidden" id="ajax_lang" value="{print get_web_param('lang')/}" name="lang" /><input type="button" style="border:0; margin-left:5px; display:inline; padding:0" src="{path template/}/images/login_input2.gif" name="go" id="ajax_login" />
+<label><a href="{path member/}/member.php?action=regist&lang={print get_web_param('lang')/}">注册会员</a></label>
+</form>
+<div class="clear"></div>
+</div><!--登录-->
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#code').click(function(){
+	$(this).attr('src','{path includes/}/code.php?tag='+new Date().getTime());
+	});
+	$.ajax({
+			type:"POST",
+			url:"{path member/}/member.php",
+			data:"action=is_ajax_login&lang="+"{print get_web_param('lang')/}",
+			dataType:"json",
+			success:function(data){
+				if(data.login==1){
+					$('#user_login').html(data.info);
+				}
+			}	
+	});
+	$('#ajax_login').click(function(){
+		$.ajax({
+			type:"POST",
+			url:"{path member/}/member.php",
+			data:"action=ajax_login&lang="+$('#ajax_lang').val()+"&password="+$('#ajax_password').val()+"&user="+$('#ajax_user').val()+"&code="+$('#ajax_code').val(),
+			dataType:"json",
+			success:function(data){
+				if(data.login==1){
+					$('#user_login').html(data.info);
+				}else{
+					alert(data.info);
+				}
+			}
+		});
+	});
+	
+});
+</script>
+
+<div class="head">
+	<div class="head_left">
+		<div class="logo"><a href="{path index/}"><img src="{path cms/}upload/{print webinfo('web_logo')/}" border="0" /></a></div>
+	</div>
+	<div class="sousuo">
+		<form name="form1" action="{path search/}">
+		<div class="s_margin"><input name="key" style="width:250px; display:block; float:left; height:30px; line-height:30px;"  type="text"/><input type="image" src="{path template/}/images/search_btn.gif" class="find" /><input type="hidden" value="{print get_web_param('lang')/}" name="lang" />
+		<div class="clear"></div>
+		</div>
+		<div class="s_margin"><span>热门搜索：</span>
+		{loop source=get_hot_words()}
+		<a href="{print $v['url']/}">{print $v['name']/}</a>
+		{/loop}
+		</div>
+		</form>
+	</div><!--搜索-->
+	<div class="head_right">
+		<a href="#" onclick="javascript:window.external.AddFavorite('http://www.beescms.com','{print webinfo('web_name')/}')" title="收藏本站到你的收藏夹">加入收藏</a>
+		{loop source=lang()}
+		<a href="{print $v['url']/}" {print $v['class']/} {print $v['target']/}>{print $v['lang_name']/}</a>
+		{/loop}
+	</div>
+	<div class="clear"></div>
+</div>
+</div>
+<div style="clear:both"></div>
+<div class="head_nav">
+	<div class="nav_left">
+	<div class="nav_right">
+	<ul>
+		<li class="{print get_web_param('index_focus')/}"><a href="{path index/}"><span>首页</span></a></li>
+		{loop source=nav_middle() item=$nav_child} 
+		<li class="{print $nav_child['class']/}"><a href="{print $nav_child['url']/}" {print $nav_child['target']/}><span>{print $nav_child['cate_name']/}</span></a>
+		</li>
+		
+		{/loop}
+	</ul>
+	</div>
+	</div>
+</div><!--主导航-->
+<div class="div_margin"></div>
+<div class="flash">
+{flash/}
+</div><!--幻灯-->

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print content('info')/}">
+<meta name="keywords" content="{print content('keywords')/}">
+<title>{print content('title')/}_{print cateinfo('cate_title_seo')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/style/common.css" rel="stylesheet" type="text/css" />
+<script src="{path template/}/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.q_body ul li').click(function(){
+		$index=$('.q_body ul li').index(this);
+		$(this).addClass('focus').siblings().removeClass('focus');
+		$('.show_q_body').find('#body').eq($index).show().siblings().hide();
+	});
+});
+</script>
+</head>
+<body>
+{include head/}
+
+<div class="banner">
+	<ul class="sub_banner">
+		<li class="b1">
+			<img src="{path template/}/images/b_joinus.jpg">
+		</li>
+	</ul>
+</div>
+
+<div class="wrap">
+	<div class="innerWrap one clearfix">
+		<div class="i_main">
+			<div class="guide">
+				{position source=$position/} > {print content('style_title')/}
+			</div>
+            <div class="g_title news_title">{print get_cate(out_id())/}</div>
+            <div class="g_wrap min500">
+            	<div class="gw_head">{print date('Y-m-d',content('updatetime'))/} {print content('style_title')/}</div>
+                {if out_id()<>62}
+                <div class="job_list">
+                   <ul>
+                    <li><span>招聘职位:</span>{print content('jobnum')/}</li>
+                    <li><span>隶属部门:</span>{print content('zwyq')/}</li>
+                    <li><span>工作地点:</span>{print content('jopaddress')/}</li>
+                    <li><span>截止日期:</span>{print content('joblasttime')/}</li>
+                   </ul>
+                </div>
+                {/if}
+				<div class="gw_body">
+					{print content('content')/}
+				</div>
+                
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{include foot/}
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print webinfo('web_description')/}">
+<meta name="keywords" content="{print webinfo('web_keywords')/}">
+<title>{if webinfo('web_index_name')}{print webinfo('web_index_name')/}{else}{print webinfo('web_name')/}{/if}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript" src="{path template/}/images/nav.js"></script>
+<script type="text/javascript" src="{path template/}/images/pic_go.js"></script>
+</head>
+<body>
+{include head/}
+<div class="div_margin"></div>
+<div class="contain c_margin">
+	<div class="contain_left">
+		<div class="box">
+			<div class="left_title"><h2>产品导航</h2></div>
+			<div class="box_in">
+				
+				<div id="category_tree">
+				{assign source=get_tpl_list_nav('3',1) name=tree/}
+			{loop source=$tree item=$nav}
+    <dl>
+     <dt><span class="c_icon"></span><a class="{print $nav['class']/}" href="{print $nav['url']/}" {print $nav['target']/} title="{print $nav['cate_name']/}">{print $nav['cate_name']/}({print $nav['content_num']/})</a></dt>
+	
+     <dd style="display: none;" id="nav_16">
+	 <ul>
+	 {loop source=$nav['child']}
+	  	 <li><a href="{print $v['url']/}">{print $v['cate_name']/}({print $v['content_num']/})</a></li>
+     {/loop}
+     </ul>
+	 </dd>
+   </dl>
+   {/loop}
+   
+   </div><!--首页导航-->
+			</div>
+		</div><!--容器结束-->
+		<div class="div_margin"></div>
+		{assign source=get_tpl_cate_content($tpl_id='1',$limit='0,10',$order_type='',$filter='',$pic='no',$order='',$lang='') name=index_arc/}
+		{if $index_arc}
+			<div class="box">
+			<div class="left_title"><h2><a href="{print $index_arc['cate']['cate_url']/}">{print $index_arc['cate']['cate_name']/}</a></h2></div>
+			<div class="box_in">
+				<div class="news_list">
+					 <ul>
+					 {loop source=$index_arc['contents']}
+       					 <li><a title="{print $v['title']/}" href="{print $v['url']/}" {print $v['target']/} {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],40)/}</a>{print date('m-d',$v['updatetime'])/}</li>
+				{/loop}
+	   				</ul>  
+				</div>  
+			</div>
+		</div><!--容器结束-->
+		{/if}
+		
+		{assign source=get_all_cate_content($tpl_id='2',$content='yes',$limit='0,8',$order_type='id',$filter='',$pic='no',$order='desc',$lang='') name=arc/}
+		{if $arc}
+			{loop source=$arc item=$arc_v}
+			<div class="box">
+			<div class="left_title"><h2><a href="{print $arc_v['cate']['cate_url']/}">{print $arc_v['cate']['cate_name']/}</a></h2></div>
+			<div class="box_in">
+				<div class="news_list">
+					 <ul>
+					 {loop source=$arc_v['contents']}
+       					 <li><a title="{print $v['title']/}" href="{print $v['url']/}" {print $v['target']/} {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],40)/}</a>{print date('m-d',$v['updatetime'])/}</li>
+				{/loop}
+	   				</ul>  
+				</div>  
+			</div>
+		</div><!--容器结束-->
+		{/loop}
+		{/if}
+		<div class="box">
+			<div class="left_title"><h2>联系方式</h2></div>
+			<div class="box_in">
+				<div class="contact">
+				{print get_block_content('contact_us')/}
+				</div>
+			</div>
+		</div><!--容器结束-->
+		
+	</div><!--左边内容-->
+	<div class="contain_right">
+		<div class="contain_right_top">
+			<div class="jianjie">
+				<div class="right_box">
+			<div class="right_title"><h2>公司简介</h2></div>
+			<div class="box_in">
+				<div class="j_content">
+				{print get_block_content('about_us')/}	
+				</div>
+			</div>
+		</div><!--容器结束-->
+			</div><!--简介-->
+			{assign source=get_tpl_cate_content($tpl_id='3',$limit='0,8',$order_type='',$filter='',$pic='no',$order='',$lang='') name=index_pr/}
+			<div class="index_pr">
+			<div class="right_box">
+			<div class="right_title"><h2><a href="{print $index_pr['cate']['cate_url']/}">{print $index_pr['cate']['cate_name']/}</a></h2></div>
+			<div class="box_in">
+			<div class="pr_contain">
+				<ul class="pr_all_list">
+				{loop source=$index_pr['contents']}
+					<li><a href="{print $v['url']/}"><img src="{print $v['thumb_pic']/}" border="0" width="120" height="120" /></a><p><a href="{print $v['url']/}" style="{print $v['style']/}">{print $v['title']/}</a></p></li>
+					{/loop}
+				</ul>
+				<div class="clear"></div>
+			</div>	
+				
+			</div>
+			</div><!--容器结束-->
+		</div><!--产品-->
+			<div class="clear"></div>
+		</div><!--顶部简介新闻-->
+		<div class="div_margin"></div>
+		{assign source=get_tpl_cate_content($tpl_id='4',$limit='0,15',$order_type='id',$filter='',$pic='no',$order='desc',$lang='') name=pr/}
+		<div class="pr">
+			<div class="right_box">
+			<div class="right_title"><h2><a href="{print $pr['cate']['cate_url']/}">{print $pr['cate']['cate_name']/}</a></h2></div>
+			<div class="box_in mouse">
+			<span class="pic_left" id="prev"></span>
+			<div class="pic_contain" id="pic_go">
+				<ul class="pr_list" id="g">
+				{loop source=$pr['contents']}
+					<li><a href="{print $v['url']/}"><img src="{print $v['thumb_pic']/}" border="0" width="120" height="120" /></a><p><a href="{print $v['url']/}">{print $v['style_title']/}</a></p><p class="look"><a href="{print $v['url']/}">详细查看>></a></p></li>
+					{/loop}
+				</ul>
+			</div>	
+				<span class="pic_right" id="next"></span>
+				<div class="clear"></div>
+				<SCRIPT type="text/javascript">
+		<!--//--><![CDATA[//><!--
+		var scrollPic_02 = new ScrollPic();
+		scrollPic_02.scrollContId   = "g";
+		scrollPic_02.arrLeftId      = "prev";//左箭头ID
+		scrollPic_02.arrRightId     = "next"; //右箭头ID
+		scrollPic_02.frameWidth     = 595;//显示框宽度
+		scrollPic_02.pageWidth      = 120; //翻页宽度
+		scrollPic_02.speed          = 10; //移动速度(毫秒，越小越快)
+		scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
+		scrollPic_02.autoPlay       = true; //自动播放
+		scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
+		scrollPic_02.initialize(); //初始化
+		//--><!]]>
+</SCRIPT>
+			</div>
+			</div><!--容器结束-->
+		</div><!--产品-->
+		
+	</div><!--右边内容-->
+	<div class="clear"></div>
+	
+</div>
+<div class="web_link">
+			<div class="link_title"><h2>友情链接</h2></div>
+			<div class="box_in">
+			{assign source=get_link(1) name=logo/}
+			{if $logo}
+				<ul class="link_logo">
+				{loop source=$logo}
+					<li><a href="{print $v['link_url']/}" title="{print $v['link_name']/}"><img src="{print $v['link_logo']/}" height="31" width="88" border="0" /></a></li>
+					{/loop}
+				</ul>
+			{/if}	
+				<ul style="clear:both">
+				{loop source=get_link()}
+					<li><a href="{print $v['link_url']/}">{print $v['link_name']/}</a></li>
+{/loop}
+				</ul>
+				<div class="clear"></div>
+			</div><!--容器结束-->
+			<div class="div_margin"></div>
+	</div>
+
+{include foot/}
+
+
+</body>
+</html>

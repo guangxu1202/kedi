@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print cateinfo('cate_info_seo')/}">
+<meta name="keywords" content="{print cateinfo('cate_key_seo')/}">
+<title>{print cateinfo('cate_title_seo')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/style/common.css" rel="stylesheet" type="text/css" />
+<script src="{path template/}/js/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+{include head/}
+<div class="banner m15">
+	<ul class="sub_banner">
+		<li class="b1">
+			<img src="{path template/}/images/b_joinus.jpg">
+		</li>
+	</ul>
+</div>
+
+{if out_id()==52}
+<div class="wrap">
+	<div class="col3 clearfix m15">
+		<div class="new_cbox fl">
+        	<!--
+			<div class="title n_orange">
+				<a href="{path job/}/job.php?id=60" class="news_more">more</a>
+				<b>校园招聘</b>
+			</div>
+            -->
+			<div class="cbody nopadding min5">
+            	<div class="c_pro_img">
+                    <a href="{path job/}/job.php?id=60">
+                    <img src="{path template/}/images/job01.jpg">
+                    </a>
+                </div>
+				<ul class="i_news">
+                	{loop source=get_cate_content($cate_id='60',$limit='0,5') }
+					<li><a title="{print $v['title']/}" href="{print $v['url']/}" {print $v['target']/} {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],60)/}</a></li>
+                    {/loop}
+				</ul>
+			</div>
+		</div>
+		<div class="new_cbox fl" style="margin-left:13px; display:inline-block;">
+        	<!--
+			<div class="title n_green1">
+				<a href="{path job/}/job.php?id=61" class="news_more">more</a>
+				<b>社会招聘</b>
+			</div>
+            -->
+			<div class="cbody nopadding min5">
+            	<div class="c_pro_img">
+                    <a href="{path job/}/job.php?id=61">
+                    <img src="{path template/}/images/job02.jpg">
+                    </a>
+                </div>
+				<ul class="i_news">
+					{loop source=get_cate_content($cate_id='61',$limit='0,5') }
+					<li><a title="{print $v['title']/}" href="{print $v['url']/}" {print $v['target']/} {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],60)/}</a></li>
+                    {/loop}
+				</ul>
+			</div>
+		</div>
+		<div class="new_cbox fr">
+        	<!--
+			<div class="title n_blue1">
+				<a href="{path job/}/job.php?id=62" class="news_more">more</a>
+				<b>成长在科迪</b>
+			</div>
+            -->
+			<div class="cbody nopadding min5">
+				<div class="c_pro_img">
+                    <a href="{path job/}/job.php?id=62">
+                    <img src="{path template/}/images/job03.jpg">
+                    </a>
+                </div>
+				<ul class="i_news">
+					{loop source=get_cate_content($cate_id='62',$limit='0,5') }
+					<li><a title="{print $v['title']/}" href="{print $v['url']/}" {print $v['target']/} {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],60)/}</a></li>
+                    {/loop}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{else}
+<div class="wrap min500">
+	<div class="i_main">
+        <div class="guide">{position source=position/}</div>
+        <div class="newsbox">
+            <div class="title"><span>{print get_cate(out_id())/}</span></div>
+            <div class="news_list">
+                <ul class="i_news">
+                    {loop  source=list_article()}
+                    <li><span class="time">{print date('Y-m-d 	H:m:s',$v['updatetime'])/}</span><a href="{print $v['url']/}" {print $v['target']/} style="{print $v['style']/}">{print $v['title']/}</a></li>
+                    {/loop}
+                </ul>
+                <div class="list_page">
+                    <div class="page_fy">
+                    {print list_page()/}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/if}
+<!--
+<div class="wrap">
+	<div class="new_cbox m15">
+		<div class="title n_orange">
+			<a href="{path job/}/job.php?id=55" class="news_more">more</a>
+			<b>招聘动态</b>
+		</div>
+		<div class="cbody" style="padding:20px;">
+			<table class="job_table">
+            	<colgroup width="50%"></colgroup>
+				<tr>
+					<td style="border-right:1px solid #c0c0c0;border-bottom:1px solid #c0c0c0;">
+						<div class="job_box">
+                        	{loop source=get_cate_content($cate_id='55',$limit='0,1') }
+							<b><a title="{print $v['title']/}" href="{print $v['url']/}" {print $v['target']/} {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],60)/}</a></b>
+							<p>职位要求</p>
+							<div class="i_jobs">
+								{print $v['zwyq']/}
+							</div>
+                            {/loop}
+						</div>
+					</td>
+					<td style="border-bottom:1px solid #c0c0c0;">
+						<div class="job_box">
+							{loop source=get_cate_content($cate_id='55',$limit='1,2') }
+							<b><a title="{print $v['title']/}" href="{print $v['url']/}" {print $v['target']/} {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],60)/}</a></b>
+							<p>职位要求</p>
+							<div class="i_jobs">
+								{print $v['zwyq']/}
+							</div>
+                            {/loop}
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="border-right:1px solid #c0c0c0;">
+						<div class="job_box">
+							{loop source=get_cate_content($cate_id='55',$limit='2,3') }
+							<b><a title="{print $v['title']/}" href="{print $v['url']/}" {print $v['target']/} {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],60)/}</a></b>
+							<p>职位要求</p>
+							<div class="i_jobs">
+								{print $v['zwyq']/}
+							</div>
+                            {/loop}
+						</div>
+					</td>
+					<td>
+						<div class="job_box">
+							{loop source=get_cate_content($cate_id='55',$limit='3,4') }
+							<b><a title="{print $v['title']/}" href="{print $v['url']/}" {print $v['target']/} {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],60)/}</a></b>
+							<p>职位要求</p>
+							<div class="i_jobs">
+								{print $v['zwyq']/}
+							</div>
+                            {/loop}
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+-->
+
+
+{include foot/}
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print content('info')/}">
+<meta name="keywords" content="{print content('keywords')/}">
+<title>{print content('title')/}_{print cateinfo('cate_title_seo')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/style/common.css" rel="stylesheet" type="text/css" />
+<script src="{path template/}/js/jquery.js" type="text/javascript"></script>
+<style>
+.soft_info li{ line-height:24px; padding-left:40px;}
+</style>
+
+</head>
+<body>
+{include head/}
+<div class="banner m15">
+	<ul class="sub_banner">
+		<li class="b1">
+			<img src="{path template/}/images/b_tech.jpg">
+		</li>
+	</ul>
+</div>
+
+<div class="wrap min500">
+	<div class="innerWrap one clearfix">
+		
+		<div class="i_main">
+			<div class="guide">{position source=position/} > {print content('style_title')/}</div>
+			<div class="g_title news_title">{print get_cate(out_id())/}</div>
+			<div class="g_wrap">
+				<div class="gw_head">{print date('Y-m-d',content('updatetime'))/} {print content('style_title')/}</div>
+				<div class="gw_body">
+                	<ul class="soft_info">
+                     {assign source=content('down') name=down/}
+                      <li><span>文件类型:</span>{print $down['type']/}</li>
+                      <li><span>文件大小:</span>{print $down['size']/}KB</li>
+                      <li><span>文件下载:</span><a href="{print $down['url']/}" target="_blank" style="color:#cc0000;text-decoration:underline;">点击下载</a></li>
+                     </ul><!--下载信息-->
+					{print content('content')/}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{include foot/}
+</body>
+</html>
